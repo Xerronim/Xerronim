@@ -12,13 +12,13 @@ public class CaseProblemNo1 {
         Textbook t = new Textbook();
   
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter the title of your book: ");
+        System.out.println("Input the title the book: ");
         BookTitle = input.nextLine();
         
-        System.out.println("Enter the number of pages: ");
+        System.out.println("Input number of pages: ");
         BookPages = input.nextInt();
         
-        System.out.println("Enter the grade level: ");
+        System.out.println("Input grade level: ");
         GradeLevel = input.nextInt();
         
         b.setBookTitle(BookTitle);
