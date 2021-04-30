@@ -1,0 +1,270 @@
+> D:
+> cd xampp
+> cd mysql
+> cd bin
+> mysql -u root -p -h localhost
+
+> CREATE DATABASE AutoSupply;
+> show databases;
+> USE AutoSupply;
+
+> CREATE TABLE Supplier
+	-> (Supplier_id CHAR(3) PRIMARY KEY,
+	-> Supplier_Company CHAR(50),
+	-> SUPPLIER_ADDRESS CHAR(50));
+
+> CREATE TABLE Parts
+	-> (Parts_id CHAR(3) PRIMARY KEY,
+	-> Parts_brand CHAR(50) Not NULL,
+	-> Supplier_id CHAR(3),
+	-> Foreign key (Supplier_id) references Supplier(Supplier_id),
+	-> Parts_name CHAR(30),
+	-> Parts_price DECIMAL(8,2),
+	-> Stocks CHAR(3));
+
+> CREATE TABLE Employee
+	-> (Employee_ID CHAR(3) PRIMARY KEY, 
+	-> Employee_Lname CHAR(20),
+	-> Employee_Fname CHAR(20),
+	-> Position CHAR(20),
+	-> Age VARCHAR(3));
+
+> CREATE TABLE Customer
+	-> (Customer_Id CHAR(5) PRIMARY KEY,
+	-> Parts_id CHAR(3),
+	-> FOREIGN KEY (Parts_id) references Parts (Parts_id),
+	-> Parts_Sold CHAR(3),
+	-> Customer_Lname CHAR(30),
+	-> Customer_Fname CHAR(30),
+	-> Customer_Address CHAR(30));
+
+> CREATE TABLE Sales
+	-> (Receipt_No CHAR(5) PRIMARY KEY,
+	-> Parts_id CHAR(3),
+	-> FOREIGN KEY (Parts_id) references Parts (Parts_id),
+	-> Customer_Id CHAR(5),
+	-> FOREIGN KEY (Customer_Id) references Customer(Customer_Id),
+	-> Parts_sold CHAR(3),
+	-> Total DECIMAL(8,2));
+
+> INSERT INTO Employee
+	-> VALUES
+	-> ('101','Salinsan','Reden','Mechanic','50');
+
+> INSERT INTO Employee
+	-> VALUES
+	-> ('102','Flores','Rufino','Mechanic','48');
+
+> INSERT INTO Employee
+	-> VALUES
+	-> ('103','Banting Jr.','Federico','Owner','58');
+
+> INSERT INTO Employee
+	-> VALUES
+	-> ('104','Banting','Danilo','Owner','67');
+
+> INSERT INTO Employee
+	-> VALUES
+	-> ('105','Banting','Dan Christoper','Cashier','32');
+
+> INSERT INTO Supplier
+	-> VALUES
+	-> ('201','Solid Town Marketing','Caloocan City');
+
+> INSERT INTO Supplier
+	-> VALUES
+	-> ('202','New Viva Parts Sales Inc.','Quezon City');
+
+> INSERT INTO Supplier
+	-> VALUES
+	-> ('203','MVG Circle 1001 Corp.','San Simon'','' Pampanga');
+
+> INSERT INTO Supplier
+	-> VALUES
+	-> ('204','RFGE Auto Parts & Accessories Trading','Quezon City');
+
+> INSERT INTO Supplier
+	-> VALUES
+	-> ('205','Primal Enterprises Corp.','Quezon City');
+
+> INSERT INTO Supplier
+	-> VALUES
+	-> ('206','King J Automotive Parts and Accessories','Bacoor, Cavite');
+
+> INSERT INTO Supplier
+	-> VALUES
+	-> ('207','Roberts Automotive & Industrial parts MFG Corp.','Cabuyao, Laguna');
+
+SET foreign_key_checks = 0;
+
+> INSERT INTO Sales
+	-> VALUES
+	-> ('50000','010','1000','1',1500.00);
+
+> INSERT INTO Sales
+	-> VALUES
+	-> ('50001','026','1001','2',480.00);
+
+> INSERT INTO Sales
+	-> VALUES
+	-> ('50002','011','1002','1',3600.00);
+
+> INSERT INTO Sales
+	-> VALUES
+	-> ('50003','017','1003','1',1100.00);
+
+> INSERT INTO Sales
+	-> VALUES
+	-> ('50004','014','1004','3',1101.00);
+
+> INSERT INTO Sales
+	-> VALUES
+	-> ('50005','013','1005','1',4500.00);
+
+> INSERT INTO Sales
+	-> VALUES
+	-> ('50006','012','1006','1',400.00);
+
+> INSERT INTO Customer
+	-> VALUES
+	-> ('1000','010','1','Flores','Dan','Cabanatuan City,N.E');
+
+> INSERT INTO Customer
+	-> VALUES
+	-> ('1001','026','2','Balagtas','Ricardo','Sta.Rosa,N.E');
+
+> INSERT INTO Customer
+	-> VALUES
+	-> ('1002','011','1','Bote','Joceline','General Tinio,N.E');
+
+> INSERT INTO Customer
+	-> VALUES
+	-> ('1003','017','1','Gabriel','Jomel','Fort Magsaysay,N.E');
+
+> INSERT INTO Customer
+	-> VALUES
+	-> ('1004','014','3','Austria','Elmer','Jaen,N.E');
+
+> INSERT INTO Customer
+	-> VALUES
+	-> ('1005','013','1','Gan','Emilio','San Antonio,N.E');
+
+> INSERT INTO Customer
+	-> VALUES
+	-> ('1006','012','1','Violago','Phil','San Jose,N.E');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('001','Surplus','205','Glass Holder',20.00,'5');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('002','Surplus','202','Relay',60.00,'3');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('003','AGP','207','Gas Cap',75.00,'15');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('004','Surplus','207','Coil Spring',640.00,'23');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('005','SGM','206','Wiper Arm',140.00,'36');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('006','Surplus','206','Tire Carrier',600.00,'3');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('007','Denso','201','Ignition Coil',150,'14');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('008','ARD','204','Suspension 4x4',1100.00,'3');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('009','ARD','205','Suspension 4x2',1100.00,'2');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('010','Suzuki','206','Gas Tank',1500.00,'2');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('011','Ramvac','201','Hydrovac',3600.00,'6');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('012','GT','202','Rim H12',400.00,'6');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('013','Surplus','204','Gear Box',4500.00,'1');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('014','Surplus','201','Flex Pipe',367.00,'3');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('015','Surplus','203','Spring',50.00,'10');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('016','Surplus','201','Aux Fan',550.00,'6');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('017','Surplus','202','Bumper',1100.00,'2');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('018','Evercool','201','Radiator 4D55',7978.00,'4');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('019','Surplus','203','Spring Pinoy ASSY',950.85,'2');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('020','Surplus','203','Adjuster',200.00,'5');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('021','Surplus','202','Differential',3000.00,'5');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('022','Suzuki','201','Sshifter Cable',300.00,'7');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('023','Surplus','2004','Side Fender',800.00,'1');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('024','Surplus','206','Air Cleaner',880.00,'5');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('025','Evercool','201','Radiator 4D30',8535.00,'3');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('026','SGP','202','Clutch Cable',240.00,'6');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('027','Surplus','202','Handle Box',250.00,'50');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('028','Surplus','201','Outer Handle',280.00,'10');
+
+> INSERT INTO Parts
+	-> VALUES
+	-> ('029','Surplus','201','Rack and Pinion',1906.00,'4');
